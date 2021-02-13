@@ -1,6 +1,7 @@
 const canvasSketch = require('canvas-sketch');
 
 
+
 const persianColors = ["51a3a3","75485e","cb904d","dfcc74","c3e991"]
 
 const color2 = ["d8e2dc","ffffff","ffcad4","f4acb7","9d8189"]
@@ -245,6 +246,7 @@ function getRandomColor() {
   }
   return color;
 }
+
 
 // Start the sketch
 canvasSketch(sketch, settings);

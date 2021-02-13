@@ -5,6 +5,12 @@ Generative art with js!
 
 ## Getting started
 
+###
+# Install the CLI tool globally
+```bash
+npm install canvas-sketch-cli -g
+```
+
 ```bash
 git clone https://github.com/BirgerMoell/generative-art-web/
 cd generative-art-web
@@ -16,9 +22,6 @@ canvas-sketch sketch.js --open
 ```bash
 git clone https://github.com/BirgerMoell/generative-art-web/
 cd generative-art-web
-
-# Install the CLI tool globally
-npm install canvas-sketch-cli -g
 
 # Scaffold a new 'sketch.js' file and open the browser
 canvas-sketch sketch.js --new --open

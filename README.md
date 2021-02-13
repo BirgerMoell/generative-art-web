@@ -37,3 +37,5 @@ Train a neural network to predict the aesthetic beauty of art. Regenerate images
 ## Integrate with style transfer
 Try integrating the art with style transfer.
 https://github.com/magenta/magenta-js/tree/master/image
+
+https://github.com/reiinakano/arbitrary-image-stylization-tfjs

@@ -308,7 +308,11 @@ function loadNote() {
 function playSound() {
     var source = audioContext.createBufferSource();
     source.buffer = playSoundBuffer;       // This is the line that generates the error
+    
+    
+    
     source.connect(audioContext.destination);
+
     source.start(0);
 }
 init()

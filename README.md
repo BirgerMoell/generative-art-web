@@ -4,16 +4,16 @@ Generative art with js!
 <img height="400px" src="https://i.imgur.com/Xg6UZV6.png"/>
 
 ## Getting started
-bash
-```
+
+```bash
 git clone https://github.com/BirgerMoell/generative-art-web/
 cd generative-art-web
 canvas-sketch sketch.js --open
 ```
 
 ## Create a new project
-bash
-```
+
+```bash
 git clone https://github.com/BirgerMoell/generative-art-web/
 cd generative-art-web
 

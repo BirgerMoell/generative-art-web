@@ -6,9 +6,10 @@ Generative art with js!
 ## Getting started
 
 ###
-# 1. Install the canvas-sketch CLI tool globally
+# 1. Install the canvas-sketch CLI tool globally and canvas sketch
 ```bash
 npm install canvas-sketch-cli -g
+npm install canvas-sketch
 ```
 # 2. Clone the repo and open it
 ```bash

@@ -29,3 +29,8 @@ canvas-sketch sketch.js --new --open
 
 ## Using Canvas Sketch
 https://github.com/mattdesl/canvas-sketch
+
+
+## Fun ideas.
+Train a neural network to predict the aesthetic beauty of art. Regenerate images until you find ones that are beautiful.
+

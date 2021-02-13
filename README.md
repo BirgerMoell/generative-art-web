@@ -34,3 +34,5 @@ https://github.com/mattdesl/canvas-sketch
 ## Fun ideas.
 Train a neural network to predict the aesthetic beauty of art. Regenerate images until you find ones that are beautiful.
 
+## Integrate with style transfer
+Try integrating the art with style transfer.

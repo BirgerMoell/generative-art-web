@@ -6,9 +6,10 @@ Generative art with js!
 ## Getting started
 
 ###
-# 1. Install the canvas-sketch CLI tool globally
+# 1. Install the canvas-sketch CLI tool globally and canvas sketch
 ```bash
 npm install canvas-sketch-cli -g
+npm install canvas-sketch
 ```
 # 2. Clone the repo and open it
 ```bash
@@ -39,3 +40,6 @@ Try integrating the art with style transfer.
 https://github.com/magenta/magenta-js/tree/master/image
 
 https://github.com/reiinakano/arbitrary-image-stylization-tfjs
+
+### Web demo
+https://glitch.com/edit/#!/successful-stump-linseed?path=index.html%3A1%3A0

@@ -1,6 +1,3 @@
-const canvasSketch = require('canvas-sketch');
-import 'audioworklet-polyfill';
-
 
 const persianColors = ["51a3a3","75485e","cb904d","dfcc74","c3e991"]
 
@@ -59,54 +56,41 @@ const colors = guld
 const lineWidth = 0.10
 const outerLoop = 25
 const innerLoop = 10
-circleDivider1 = 8
-circleDivider2 = 4
+circleDivider1 = 0.25
+circleDivider2 = 0.5
 
+export function sketch(width, height) {
+    console.log("inside the sketch")
+    var canvas = document.getElementById("myCanvas");
+    var context = canvas.getContext("2d");
 
-// Artwork function
-const sketch = () => {
-  return ({ context, width, height }) => {
     console.log("the context is ", context)
     // Margin in inches
     const margin = 0;
 
     // Gradient foreground
-    // const fill = context.createLinearGradient(10, 0, width, height);
-    // for (const color in colors) {
-    //   console.log("color", )
-    //   fill.addColorStop(color/(colors.length), "#" + colors[color]);
-    // }
-    // Fill rectangle
-    // context.fillStyle = fill;
-    // context.fillRect(margin, margin, width - margin * 2, height - margin * 2);
+    const fill = context.createLinearGradient(10, 0, width, height);
+    for (const color in colors) {
+      console.log("color", )
+      fill.addColorStop(color/(colors.length), "#" + colors[color]);
+    }
+    //Fill rectangle
+    context.fillStyle = fill;
+    context.fillRect(margin, margin, width - margin * 2, height - margin * 2);
 
     for(var i=0; i<outerLoop; i++){ 
-      let random1 = getRandomNumber(10, 1)
-      //drawRect(i, i/2, getRandomNumber(width, 0.1), getRandomNumber(height, 0.1), context)
-      //drawLine({x: getRandomNumber(width, 0.1), y: getRandomNumber(height, 0.1)}, {x:10, y: i}, context)
-      //drawTriangle({x: i, y:i},{x:width/4, y:13}, {x:width, y:random1}, context);
-      //drawFract({x:j*10, y:i*10}, {x: i*20, y:i*20}, {x: 20, y:10}, 1, context) 
-      createCircle(width, height, context, i/circleDivider1)
+
+       createCircle(width, height, context, i/circleDivider1)
       for(var j=0; j<innerLoop; j++){
-        let random2 = getRandomNumber(10, 1)
-        //drawFract({x:j*10, y:i*10}, {x: i*20, y:j*20}, {x: 20, y:10}, 1, context)
-        //drawLine({x: getRandomNumber(width, 0.1), y: getRandomNumber(height, 0.1)}, {x:10, y: j}, context)
-        //drawTriangle({x: j, y:j},{x:width, y:2}, {x:j, y:j}, context);
-        //drawRect(j, j, getRandomNumber(width, 0.7), getRandomNumber(height, 0.5), context)
-        createCircle(width, height, context, j/circleDivider2)//j/64)
+      createCircle(width, height, context, j/circleDivider2)//j/64)
       }
     }
+}
 
-    // for(var i=0; i<25; i++){  
-    //   createCircle(width, height, context, 3)
-    // }
-    //drawRect(height/3, width/2, width/2, height/3, context)
 
-    //drawRectangles(10, 10, width, height, context, 5)
-    //drawLine({x: 10, y:10} , {x:100, y:100}, context)
-  };
 
-};
+
+
 
 const createCircle = (width, height, context, radius) => {
   context.beginPath();
@@ -158,7 +142,6 @@ const createCircle = (width, height, context, radius) => {
   context.fill();
 
 }
-
 
 
 function drawLine(p0, p1, context) {
@@ -245,96 +228,6 @@ function getRandomColor() {
 }
 
 
-// Start the sketch
-
-
-async function  loadSong(url, loadCompletedCallback) {
-    console.log("loading", url )
-    const response = await fetch(url);
-    console.log(response)
-    const song = await response.arrayBuffer();
-    return this.context_.decodeAudioData(song);
-}
-// https://github.com/GoogleChromeLabs/web-audio-samples/blob/gh-pages/audio-worklet/src/bitcrusher-demo.js
- 
-function playSong() {
-    console.log('Song')
-    const audioContext = new AudioContext();
-    loadSong('audio_files/Cat_Song.ogg').then((song) => {
-        this.songBuffer = song;
-      });
-
-  }
-
-
-var audioContext;
-var playSoundBuffer;
-var analyser;
-
-
-function init() {
-    audioContext = new AudioContext();
-    
-    body = document.getElementsByTagName('body')[0];
-    document.createElement("button")
-    var button = document.createElement('button');
-    button.addEventListener('click', function() {
-        audioContext = new AudioContext();
-        console.log("clik")
-         
-        loadNote();
-    
-      });
-    body.appendChild(button); ;
-}
-
-document.querySelector('button')
-function loadNote() {
-    console.log('Note')
-    var request = new XMLHttpRequest();
-    request.open("GET", "audio_files/MysteriousSynthLead_1.wav", true);
-    request.responseType = "arraybuffer";
-    request.onload = function() {
-        audioContext.decodeAudioData(request.response, function(buffer) {
-            playSoundBuffer = buffer;
-            playSound(); // don't start processing it before the response is there!
-        }, function(error) {
-            console.error("decodeAudioData error", error);
-        });
-    };
-    request.send();//start doing something async
-}
-
-
-function playSound() {
-    var source = audioContext.createBufferSource();
-    source.buffer = playSoundBuffer;       // This is the line that generates the error
-    var analyser = audioContext.createAnalyser();
-    source.connect(analyser)
-    analyser.connect(audioContext.destination);
-    var bufferLength = analyser.frequencyBinCount;
-    source.start(0);
-    const sleep = (t) =>  ({ then: (r) => setTimeout(r, t) })
-    
-    sleep(1005)
-    var dataArray = new Uint8Array(bufferLength);
-    analyser.getByteFrequencyData(dataArray);
-    console.log(dataArray);
-    
-    canvasSketch(sketch, settings);
-
-}
-init()
-
-
-async function createWhiteNoise() {
-  const audioContext = new window.AudioContext()
-  console.log("hte audio context is", audioContext)
-  await audioContext.audioWorklet.addModule('white-noise-processor.js')
-  const whiteNoiseNode = new AudioWorkletNode(audioContext, 'white-noise-processor')
-  whiteNoiseNode.connect(audioContext.destination)
-}
-
-createWhiteNoise()
- 
-//playSong()
+//sketch(400, 400)
+//setInterval(function(){ alert("Hello"); }, 3000);
+//setInterval(function(){ sketch(400, 400) }, 100);

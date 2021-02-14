@@ -246,7 +246,7 @@ function getRandomColor() {
 
 
 // Start the sketch
-canvasSketch(sketch, settings);
+
 
 async function  loadSong(url, loadCompletedCallback) {
     console.log("loading", url )
@@ -267,8 +267,10 @@ function playSong() {
   }
 
 
-  var audioContext;
+var audioContext;
 var playSoundBuffer;
+var analyser;
+
 
 function init() {
     audioContext = new AudioContext();
@@ -301,20 +303,31 @@ function loadNote() {
         });
     };
     request.send();//start doing something async
-
-
 }
+
 
 function playSound() {
     var source = audioContext.createBufferSource();
     source.buffer = playSoundBuffer;       // This is the line that generates the error
-    
-    
-    
-    source.connect(audioContext.destination);
-
+    var analyser = audioContext.createAnalyser();
+    source.connect(analyser)
+    analyser.connect(audioContext.destination);
+    var bufferLength = analyser.frequencyBinCount;
     source.start(0);
+    const sleep = (t) =>  ({ then: (r) => setTimeout(r, t) })
+    
+    sleep(1005)
+    var dataArray = new Uint8Array(bufferLength);
+    analyser.getByteFrequencyData(dataArray);
+    console.log(dataArray);
+    
+    canvasSketch(sketch, settings);
+
 }
 init()
+
+
+
+
 
 //playSong()

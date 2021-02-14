@@ -43,3 +43,9 @@ https://github.com/reiinakano/arbitrary-image-stylization-tfjs
 
 ### Web demo
 https://glitch.com/edit/#!/successful-stump-linseed?path=index.html%3A1%3A0
+
+## Music integration
+
+## TODO
+Add nodes
+

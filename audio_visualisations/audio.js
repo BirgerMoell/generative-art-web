@@ -1,14 +1,16 @@
 var audioContext;
 var playSoundBuffer;
-import { sketch } from "./sketch"
 
+import sketch from "./sketch.js"
+console.log("the sketch is", sketch)
 
 function init() {
     audioContext = new AudioContext();
     
-    body = document.getElementsByTagName('body')[0];
-    document.createElement("button")
+    const body = document.getElementsByTagName('body')[0];
+
     var button = document.createElement('button');
+    button.innerHTML = "jag är en banan"
     button.addEventListener('click', function() {
         audioContext = new AudioContext();
         console.log("clik")

@@ -1,5 +1,5 @@
 
-const persianColors = ["51a3a3","75485e","cb904d","dfcc74","c3e991"]
+const color1 = ["51a3a3","75485e","cb904d","dfcc74","c3e991"]
 
 const color2 = ["d8e2dc","ffffff","ffcad4","f4acb7","9d8189"]
 
@@ -56,10 +56,13 @@ const colors = guld
 const lineWidth = 0.10
 const outerLoop = 25
 const innerLoop = 10
-circleDivider1 = 0.25
-circleDivider2 = 0.5
+const circleDivider1 = 0.25
+const circleDivider2 = 0.5
 
-export function sketch(width, height) {
+const colorSchemes = [color1, color2, color3, color4, color5, color6, color7, color8, color9, color10, color11, color12, color13, color14, color15, color16, color17, color18, guld, guld2, guld3, greyScale, blackWhite]
+
+
+function sketch(width, height, colors, outerLoop, innerLoop, circleDivider1, circleDivider2) {
     console.log("inside the sketch")
     var canvas = document.getElementById("myCanvas");
     var context = canvas.getContext("2d");
@@ -214,7 +217,7 @@ const randomElement = (array) => {
 }
 
 function getRandomNumber(max, min) {
-  number = Math.floor(Math.random()* max) + min
+  const number = Math.floor(Math.random()* max) + min
   return number
 }
 
@@ -227,7 +230,10 @@ function getRandomColor() {
   return color;
 }
 
+let width = 3840
+let height = 2160
 
-//sketch(400, 400)
-//setInterval(function(){ alert("Hello"); }, 3000);
-//setInterval(function(){ sketch(400, 400) }, 100);
+
+sketch(width, height, randomElement(colorSchemes), getRandomNumber(50, 5),  getRandomNumber(50, 5),  1/getRandomNumber(100, 25)*15,  getRandomNumber(25, 1))
+//setInterval(function() { sketch(1600, 1000, randomElement(colorSchemes), getRandomNumber(50, 5),  getRandomNumber(50, 5),  1/getRandomNumber(100, 1),  getRandomNumber(50, 1))}, 1000)
+// export default sketch;
